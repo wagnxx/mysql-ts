@@ -1,0 +1,23 @@
+{
+  "name": "conn-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-swig": "^2.2.1",
+    "koa2-cors": "^2.0.6",
+    "log4js": "^6.1.0",
+    "mysql": "^2.17.1",
+    "nodemon": "^2.0.1"
+  }
+}
