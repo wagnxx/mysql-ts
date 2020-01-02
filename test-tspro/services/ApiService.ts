@@ -19,13 +19,15 @@ export default class ApiService implements IApi {
     let result= {
       data: {
         code:200,
-        data
+        data:[...data]
       }
     };
-    ctx.response.body=(result);
+    // ctx.response.body=result;
+    ctx.response.body =result;
+   
   }
   async getAllwebsite(ctx: Router.IRouterContext, next: () => Promise<any>) {
     let data = await db.WebsitesTable.findAll();
-    ctx.response.body=({ data: data, code: 200 });
+    ctx.response.body={ data: data, code: 200 };
   }
 }

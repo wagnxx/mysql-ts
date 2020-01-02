@@ -18,6 +18,8 @@ export default class HelloController implements interfaces.Controller {
   }
   @httpGet('/')
   async hell(ctx, next) {
-    ctx.body = await this.apiService.getInfo('');
+
+    // ctx.body = await this.apiService.getInfo('');
+    ctx.body=2333333333333;
   }
 }

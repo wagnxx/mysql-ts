@@ -7,7 +7,7 @@ import {
 } from './ioc/inversify.config';
 
 import config from './config';
-import logic from './common/logic'
+import logic from './middleware/logic'
 import  * as bodyParser from 'koa-bodyparser';
  
 const container = new Container();
