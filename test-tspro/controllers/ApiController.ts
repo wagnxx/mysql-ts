@@ -23,11 +23,11 @@ export default class ApiController implements interfaces.Controller {
  
   @httpGet('/getWebsite')
   async getWebsite(ctx:Router.IRouterContext, next) {
-     this.apiService.getWebsite(ctx,next);
+     return this.apiService.getWebsite(ctx,next);
   }
  
   @httpGet('/getAllwebsite')
   async getAllwebsite(ctx:Router.IRouterContext, next) {
-     this.apiService.getAllwebsite(ctx,next);
+    return this.apiService.getAllwebsite(ctx,next);
   }
 }

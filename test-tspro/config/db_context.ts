@@ -8,12 +8,12 @@ const sequelize = new Sequelize('test', 'root', 'root', {
   
   dialect: 'mysql',
   host: '192.168.1.104',
-  // pool: {
-  //   max: 5,
-  //   min: 0,
-  //   acquire: 30000,
-  //   idle: 10000
-  // },
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
   define: {
     timestamps: false
   }
