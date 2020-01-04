@@ -30,4 +30,12 @@ export default class ApiController implements interfaces.Controller {
   async getAllwebsite(ctx:Router.IRouterContext, next) {
     return this.apiService.getAllwebsite(ctx,next);
   }
+ 
+  @httpPost('/addColl')
+  async addColl(ctx:Router.IRouterContext, next) {
+    return this.apiService.addColl(ctx,next);
+  }
+
+
+
 }

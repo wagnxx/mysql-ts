@@ -25,16 +25,22 @@ export default class CollTable extends Model<CollTable> {
   static async findData(uid: number) {
     const results = await this.findAll({
       where: { uid },
-      attributes: ['id'],
+      attributes: [['id','cid']],
       include: [
         {
           model: WebsitesTable,
-          attributes: ['id', 'url', 'name']
+          attributes: ['id', 'url', 'name','alexa','country']
         }
       ],
-      raw: true
+      raw: true,
+      nest:true,
     });
 
-    return results;
+    return results.map(c=>{
+      return {
+        cid:c.cid,
+        ...c.w
+      }
+    });
   }
 }

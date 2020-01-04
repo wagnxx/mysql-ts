@@ -14,8 +14,10 @@ export interface IApi {
     next: () => Promise<any>);
   getAllwebsite(ctx: Router.IRouterContext,
     next: () => Promise<any>);
+    addColl(ctx: Router.IRouterContext,
+    next: () => Promise<any>);
 }
 export interface IUser {
-  register(ctx:Router.IRouterContext,next: () => Promise<any>):Promise<object>|void;
+  register(ctx:Router.IRouterContext,next: () => Promise<any>);
    login(ctx:Router.IRouterContext,next: () => Promise<any>);
 }

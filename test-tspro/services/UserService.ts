@@ -1,19 +1,38 @@
 import { provide } from '../ioc/inversify.config';
 import { IUser } from '../interface/Api';
+import { Result } from '../interface/Result';
 import TAGS from '../constant/TAGS';
 import * as db from '../config/db_context';
 import { Router } from '../ioc/inversify.config';
 
 @provide(TAGS.UserService)
 export default class UserService implements IUser {
-  register(
+ async register(
     ctx: Router.IRouterContext,
     next: () => Promise<any>
-  ): Promise<object> {
-    let result = { data: 'register' };
-    ctx.body = result;
-    ctx.response.body = { data: { msg: 'register' }, code: 200 };
-    return Promise.resolve(result);
+  ){
+    let body = ctx.request.body;
+    const { user: uname, password: upass } = body;
+
+    let par = { uname, upass };
+
+    let findUser= await db.UserTable.findAll({raw:true,where:{...par}});
+
+    let result:Result={
+      code:200,
+      data:null,
+    };
+    let createResult=null;
+
+    if(findUser.length>0){
+      result.data={msg:'已注册'};
+  
+    }else{
+      createResult = await db.UserTable.create({...par});
+      result.data=createResult?{msg:'注册成功'}:{msg:'注册失败'};
+
+    }    
+    ctx.response.body = result
   }
 
  async login(
@@ -27,10 +46,7 @@ export default class UserService implements IUser {
 
     let findUser= await db.UserTable.findAll({raw:true,where:{...par}});
 
-    let result:{
-      code:number|string,
-      data:string|object
-    }={
+    let result:Result={
       code:200,
       data:null,
     };
@@ -54,10 +70,8 @@ export default class UserService implements IUser {
       overwrite: true // 是否允许重写
     })
     
-    ctx.response.body = {
-      data:result
-    };
+    ctx.response.body = result
 
-    // return Promise.resolve(par);
+ 
   }
 }
