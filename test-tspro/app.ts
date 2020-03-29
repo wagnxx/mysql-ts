@@ -9,7 +9,8 @@ import {
 import config from './config';
 import logic from './middleware/logic'
 import  * as bodyParser from 'koa-bodyparser';
- 
+import * as serve from 'koa-static' 
+
 const container = new Container();
 container.load(buildProviderModule());
 
@@ -22,12 +23,14 @@ server.setConfig(app=>{
       }
     })
   );
+  app.use(serve(config.staticDir))
   app.use(logic);
+  
 })
 const app = server.build();
 
 app.listen(config.port, () => {
-  // console.log('inversify server is running on port ' + config.port);
+  console.log('inversify server is running on port ' + config.port);
 });
 // process.nextTick(() => {
 // });
